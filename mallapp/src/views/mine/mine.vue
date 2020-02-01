@@ -13,7 +13,8 @@
   data(){
    return{
     title:'我的',
-    name:"张涛"
+    name:"张涛",
+    age:19
    }
   },
   components:{
