@@ -12,7 +12,8 @@
  name:'me',
   data(){
    return{
-    title:'我的'
+    title:'我的',
+    name:"张涛"
    }
   },
   components:{
