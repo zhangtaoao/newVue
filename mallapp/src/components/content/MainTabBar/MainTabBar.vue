@@ -1,5 +1,5 @@
 <template>
- <div id="maintabbar">
+ <div id="maintabbar" v-show="$route.meta.keepAlive">
   <tab-bar>
      <tab-bar-item path='/home'>
        <img src="~assets/img/tabbar/home.png" alt="" slot="icon">

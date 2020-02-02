@@ -20,10 +20,10 @@
             <el-input v-model="formLogin.name"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input v-model="formLogin.password"></el-input>
+            <el-input v-model="formLogin.password" show-password></el-input>
           </el-form-item>
           <el-form-item label="确认密码" prop="checkPassword">
-            <el-input v-model="formLogin.checkPassword"></el-input>
+            <el-input v-model="formLogin.checkPassword" show-password></el-input>
           </el-form-item>
           <el-form-item>
               <el-button type="primary" @click="login">登录</el-button>
@@ -46,7 +46,7 @@
   // 将actions中的方法直接转为组件中的方法
  import NavBar from 'components/common/navbar/NavBar'
 // import {mapActions} from 'vuex'
-import {checkuser} from "network/login"
+import {checkuser,checkpass} from "network/login"
 
   export default {
     components:{
@@ -107,13 +107,17 @@ import {checkuser} from "network/login"
           password: user.password
         };
         if(!checkuser(formData)){
-                this.$message.success("登陆成功")
+          if(checkpass(formData)){
+            this.$message.success("登陆成功")
                 // 登录成功 跳转至首页
                 this.$router.push('/');
             }else{
-              this.$message.error("密码或用户名不正确");
-              return false;
-            }
+              this.$message.error("密码错误！");
+            }   
+        }else{
+          this.$message.error("该用户没有被注册！");
+          return false;
+        }
         // 表单验证
         // this.$refs['formLogin'].validate((valid) => {
         //   if (valid) {
