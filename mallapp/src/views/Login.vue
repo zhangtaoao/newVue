@@ -45,7 +45,7 @@
   // 引入vuex /src/helper.js中的辅助函数，
   // 将actions中的方法直接转为组件中的方法
  import NavBar from 'components/common/navbar/NavBar'
-// import {mapActions} from 'vuex'
+import {mapActions} from 'vuex'
 import {checkuser,checkpass} from "network/login"
 
   export default {
@@ -98,19 +98,21 @@ import {checkuser,checkpass} from "network/login"
       }
     },
     methods:{
-      // ...mapActions(['userLogin']),
+      ...mapActions(['userLogin']),
       // 向登录接口发起请求
       login(){
         let user = this.formLogin;
         let formData = {
           username: user.name,
-          password: user.password
+          password: user.password,
+          token: "88888888"
         };
         if(!checkuser(formData)){
           if(checkpass(formData)){
-            this.$message.success("登陆成功")
-                // 登录成功 跳转至首页
-                this.$router.push('/');
+              this.$message.success("登陆成功");
+              this.userLogin(formData);
+              // 登录成功 跳转至首页
+              this.$router.push('/');
             }else{
               this.$message.error("密码错误！");
             }   

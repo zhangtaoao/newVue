@@ -94,7 +94,8 @@
         let user = this.formRegister;
         let formData = {
           username: user.name,
-          password: user.password
+          password: user.password,
+          token:'88888888'
         };
         if(checkuser(formData)){
               Registration(formData);

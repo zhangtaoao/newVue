@@ -3,18 +3,20 @@ let count=0;
 function USER(){
     this.username=null,
     this.password=null,
+    this.token=null,
     this.data={}
 }
 
 //所有用户
 let users={
     data:[
-    {
-        username:'lisi',
-        password:'11111111',
-        count:0,
-        data:{}
-    }
+    // {
+    //     username:'lisi',
+    //     password:'11111111',
+    //     token:"8584515",
+    //     count:0,
+    //     data:{}
+    // }
 ]};
 let nameData = JSON.stringify(users);
 // localStorage.setItem('malluser', nameData);//初始化
@@ -57,7 +59,6 @@ const Registration=function (reguser){
     if(checkuser(reguser)){
         Object.keys(user).forEach(function(key){
             user[key]=reguser[key];
-            // localStorage.setItem('tokin',reguser[username]);
         });
         users.data.push(user);
         let newNameData = JSON.stringify(users);

@@ -8,11 +8,11 @@
       <el-menu-item index="2" :style="{float: 'right'}">
         <router-link v-show="!user.name" to="/login">登录</router-link>
         <el-dropdown @command="loginOut">
-          <span :style="{color:'#FFF'}" v-show="user.name">
+          <span :style="{color:'black'}" v-show="user.name">
           {{user.name}}<i class="el-icon-caret-bottom el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command>登出</el-dropdown-item>
+            <el-dropdown-item command>退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-menu-item>
@@ -25,7 +25,7 @@
 
 <script>
  import NavBar from 'components/common/navbar/NavBar'
-//  import {mapActions} from 'vuex'
+ import {mapActions} from 'vuex'
  export default {
  name:'me',
   data(){
@@ -37,7 +37,11 @@
     }
    }
   },
-    beforeCreate(){
+    mounted(){
+      let username = localStorage.getItem('username');
+      if (username) {
+        this.user.name = username;
+      }
       // 当主页刷新时，如果服务端设置的token
       // 的时效到了的话，便会提示未登录
       // this.$http.get('/api/token')
@@ -61,18 +65,17 @@
       
     },
     methods: {
-      // ...mapActions(['userLoginOut']),
+      ...mapActions(['userLoginOut']),
       // 登出loginOut
       loginOut(){
-        // this.userLoginOut();
-        // this.user.name = null;
-        // if (!this.$store.state.token) {
-        //     this.$router.push('/login')
-        //     this.$message.success('登出成功');
-        // } else {
-        //     this.$message.success('登出失败');
-        // }
-        
+        this.userLoginOut();
+        this.user.name = null;
+        if (!this.$store.state.token) {
+            this.$router.push('/login')
+            this.$message.success('登出成功');
+        } else {
+            this.$message.success('登出失败');
+        }
       }
     },
   components:{
