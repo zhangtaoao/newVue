@@ -9,7 +9,7 @@
       <!--<router-view v-if="!$route.meta.keepAlive"></router-view>-->
     <!--</transition>-->
     <keep-alive>
-      <router-view/>
+        <router-view  v-if="isRouterAlive"/>
     </keep-alive>
     <main-tab-bar/>
   </div>
@@ -21,8 +21,26 @@
     name:'app',
     components:{
       MainTabBar
+    },
+     provide(){
+    return{
+      reload:this.reload
+    }
+   },
+   data(){
+    return{
+      isRouterAlive:true
+    }
+  },
+    methods: {
+    reload (){
+       this.isRouterAlive = false
+       this.$nextTick(function(){
+          this.isRouterAlive = true
+       })
     }
   }
+}
 </script>
 
 <style>

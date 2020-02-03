@@ -49,6 +49,7 @@ import {mapActions} from 'vuex'
 import {checkuser,checkpass} from "network/login"
 
   export default {
+    inject:['reload'],
     components:{
     NavBar
     },
@@ -111,8 +112,10 @@ import {checkuser,checkpass} from "network/login"
           if(checkpass(formData)){
               this.$message.success("登陆成功");
               this.userLogin(formData);
-              // 登录成功 跳转至首页
+              // 登录成功 跳转
               this.$router.push('/');
+              this.$router.go(0)
+              this.reload()
             }else{
               this.$message.error("密码错误！");
             }   

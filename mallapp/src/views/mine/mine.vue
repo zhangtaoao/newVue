@@ -32,15 +32,17 @@
    return{
     title:'我的',
     activeIndex:'1',
+    refresh:0,
     user:{
       name:''
     }
    }
   },
-    mounted(){
+    created(){
       let username = localStorage.getItem('username');
       if (username) {
         this.user.name = username;
+
       }
       // 当主页刷新时，如果服务端设置的token
       // 的时效到了的话，便会提示未登录
