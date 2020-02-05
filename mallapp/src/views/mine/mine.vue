@@ -20,6 +20,7 @@
     <el-card class="box-card">
       <p>Hello {{user.name}}</p>
     </el-card>
+    <el-button type="primary" @click='weixinLo'>微信登录</el-button>
   </div>
 </template>
 
@@ -78,7 +79,8 @@
         } else {
             this.$message.success('登出失败');
         }
-      }
+      },
+      weixinLo(){}
     },
   components:{
    NavBar
