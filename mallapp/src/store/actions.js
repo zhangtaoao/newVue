@@ -9,19 +9,13 @@ const actions = {
   // 使用es6的函数参数结构简化代码，可以直接将context.commit => commit使用
   // 在.vue文件中通过store.dispatch('userLogin') 即可触发状态改变了
   // 这里的data是因为提交mutations时需要获取从/api/login传回的user对象
-  userLogin({
-    commit
-  }, data) {
+  userLogin({commit}, data) {
     commit(types.LOGIN, data);
   },
-  delUserSession({
-    commit
-  }, data) {
+  delUserSession({commit}, data) {
     commit(types.DELSESSION, data);
   },
-  userLoginOut({
-    commit
-  }) {
+  userLoginOut({commit}) {
     commit(types.LOGINOUT);
   }
 }
