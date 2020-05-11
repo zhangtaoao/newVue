@@ -62,8 +62,8 @@ let routes = [
 ]
 
 const router = new VueRouter({
-  routes,
-  mode:'history'
+  routes
+  // mode:'history'
 })
 // 设置路由拦截
 // 在vue-router的全局钩子中设置拦截 
