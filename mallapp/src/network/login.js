@@ -1,5 +1,4 @@
 let isExist=true;
-let count=0;
 function USER(){
     this.username=null,
     this.password=null,
@@ -18,15 +17,14 @@ let users={
     //     data:{}
     // }
 ]};
-let nameData = JSON.stringify(users);
+// let nameData = JSON.stringify(users);
 // localStorage.setItem('malluser', nameData);//初始化
 //本地存储
 if(localStorage.malluser){
     let getData=localStorage.getItem("malluser");
-    users=JSON.parse(getData);
-    console.log("获取本地存储成功");
+    users = typeof getData == "string" ? JSON.parse(getData) : getData;
 } else {
-    localStorage.setItem('malluser', users);
+    localStorage.setItem("malluser", JSON.stringify(users));
 }
 //登录验证
 //是否重名
@@ -62,7 +60,7 @@ const Registration=function (reguser){
         });
         users.data.push(user);
         let newNameData = JSON.stringify(users);
-        localStorage.setItem('malluser', newNameData);
+        localStorage.setItem("malluser", newNameData);
         console.log(users)
     };
     isExist=true;

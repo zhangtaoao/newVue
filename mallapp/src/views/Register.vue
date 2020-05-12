@@ -104,6 +104,7 @@
         }else{
           this.$message.error("该用户已被注册！");
         }
+
         // 表单验证
         // this.$refs['formRegister'].validate((valid)=>{
         //   if(valid){
@@ -125,6 +126,7 @@
         //     return false;
         //   }
         // })
+        
       }
     }
   }
